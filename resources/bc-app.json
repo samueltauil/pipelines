@@ -1,0 +1,70 @@
+{
+    "kind": "BuildConfig",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "loadbalance",
+        "namespace": "myproject",
+        "selfLink": "/oapi/v1/namespaces/myproject/buildconfigs/loadbalance",
+        "uid": "95876d66-9c69-11e6-9c15-5a25fac27d60",
+        "resourceVersion": "14960",
+        "creationTimestamp": "2016-10-27T17:19:57Z",
+        "labels": {
+            "app": "loadbalance"
+        },
+        "annotations": {
+            "openshift.io/generated-by": "OpenShiftNewApp"
+        }
+    },
+    "spec": {
+        "triggers": [
+            {
+                "type": "GitHub",
+                "github": {
+                    "secret": "FaqtJuofZFMRXSg8cVPI"
+                }
+            },
+            {
+                "type": "Generic",
+                "generic": {
+                    "secret": "XGFuh4nZgMDCQ5-9FCiP"
+                }
+            },
+            {
+                "type": "ConfigChange"
+            },
+            {
+                "type": "ImageChange",
+                "imageChange": {
+                    "lastTriggeredImageID": "busybox@sha256:29f5d56d12684887bdfa50dcd29fc31eea4aaf4ad3bec43daf19026a7ce69912"
+                }
+            }
+        ],
+        "runPolicy": "Serial",
+        "source": {
+            "type": "Git",
+            "git": {
+                "uri": "https://github.com/samueltauil/loadbalance"
+            }
+        },
+        "strategy": {
+            "type": "Docker",
+            "dockerStrategy": {
+                "from": {
+                    "kind": "ImageStreamTag",
+                    "name": "busybox:latest"
+                }
+            }
+        },
+        "output": {
+            "to": {
+                "kind": "ImageStreamTag",
+                "name": "loadbalance:latest"
+            }
+        },
+        "resources": {},
+        "postCommit": {}
+    },
+    "status": {
+        "lastVersion": 1
+    }
+}
