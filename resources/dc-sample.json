@@ -1,0 +1,79 @@
+{
+    "kind": "DeploymentConfig",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "pipelines",
+        "namespace": "myproject",
+        "selfLink": "/oapi/v1/namespaces/myproject/deploymentconfigs/pipelines",
+        "uid": "b3347db7-9d33-11e6-9c15-5a25fac27d60",
+        "resourceVersion": "23962",
+        "generation": 1,
+        "creationTimestamp": "2016-10-28T17:26:45Z",
+        "labels": {
+            "app": "pipelines"
+        },
+        "annotations": {
+            "openshift.io/generated-by": "OpenShiftWebConsole"
+        }
+    },
+    "spec": {
+        "strategy": {
+            "type": "Rolling",
+            "rollingParams": {
+                "updatePeriodSeconds": 1,
+                "intervalSeconds": 1,
+                "timeoutSeconds": 600,
+                "maxUnavailable": "25%",
+                "maxSurge": "25%"
+            },
+            "resources": {}
+        },
+        "triggers": [],
+        "replicas": 1,
+        "test": false,
+        "selector": {
+            "deploymentconfig": "pipelines"
+        },
+        "template": {
+            "metadata": {
+                "creationTimestamp": null,
+                "labels": {
+                    "app": "pipelines",
+                    "deploymentconfig": "pipelines"
+                }
+            },
+            "spec": {
+                "containers": [
+                    {
+                        "name": "pipelines",
+                        "image": "pipelines:latest",
+                        "ports": [
+                            {
+                                "containerPort": 8080,
+                                "protocol": "TCP"
+                            },
+                            {
+                                "containerPort": 8443,
+                                "protocol": "TCP"
+                            },
+                            {
+                                "containerPort": 8778,
+                                "protocol": "TCP"
+                            }
+                        ],
+                        "resources": {},
+                        "terminationMessagePath": "/dev/termination-log",
+                        "imagePullPolicy": "Always"
+                    }
+                ],
+                "restartPolicy": "Always",
+                "terminationGracePeriodSeconds": 30,
+                "dnsPolicy": "ClusterFirst",
+                "securityContext": {}
+            }
+        }
+    },
+    "status": {
+        "observedGeneration": 1
+    }
+}

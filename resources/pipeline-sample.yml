@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: BuildConfig
+metadata:
+  name: samplepipeline 
+  labels:
+    name: samplepipeline
+spec:
+  runPolicy: Serial
+  source:
+    type: "Git"
+    git:
+      uri: "https://github.com/samueltauil/pipelines.git"
+  strategy:
+    type: JenkinsPipeline
+    jenkinsPipelineStrategy:
+      jenkinsfile: resources/Jenkinsfile 
+  output:
+  resources:
+  postCommit:

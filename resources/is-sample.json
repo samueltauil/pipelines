@@ -1,0 +1,23 @@
+{
+    "kind": "ImageStream",
+    "apiVersion": "v1",
+    "metadata": {
+        "name": "pipelines",
+        "namespace": "myproject",
+        "selfLink": "/oapi/v1/namespaces/myproject/imagestreams/pipelines",
+        "uid": "4dd095f8-9f6e-11e6-9c15-5a25fac27d60",
+        "resourceVersion": "29308",
+        "generation": 1,
+        "creationTimestamp": "2016-10-31T13:31:18Z",
+        "labels": {
+            "app": "pipelines"
+        },
+        "annotations": {
+            "openshift.io/generated-by": "OpenShiftWebConsole"
+        }
+    },
+    "spec": {},
+    "status": {
+        "dockerImageRepository": "172.30.19.42:5000/myproject/pipelines"
+    }
+}
