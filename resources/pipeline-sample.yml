@@ -1,10 +1,10 @@
 apiVersion: v1
 kind: BuildConfig
 metadata:
-  name: samplepipeline
+  name: sample-pipeline
   app: pipelines 
   labels:
-    name: samplepipeline
+    name: sample-pipeline
 spec:
   runPolicy: Serial
   source:
