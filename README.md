@@ -1,26 +1,16 @@
 ## Notes
-- `oc cluster up`
-- Provision a Jenkins instance.
-- Install the **Pipeline Maven Plugin** to Jenkins.
-- Configure Java and Maven: `Manage Jenkins -> Configure System`.
-  - In **Global properties** add a new environment variable `JAVA_HOME` with value from `java.home` attribute on `Manage Jenkins -> System Information`.
-  - In **JDK** add a new installer.
-  - In **Maven** add a new installer and name it **M3**.
-- Check if the Image Streams for xpaas are installed.
-  - If not load them by using this file https://github.com/jboss-openshift/application-templates/blob/master/jboss-image-streams.json with the command:
-  `oc create -f jboss-image-streams.json`
-- Create the Build Config for the application:
-  `oc create -f resources/bc-sample.json`
-
-
-- Configure Java and Maven: `Manage Jenkins -> Configure System`.
-  - In **Global properties** add a new environment variable `JAVA_HOME` with value from `java.home` attribute on `Manage Jenkins -> System Information'.
-  - In **JDK** add a new installer.
-  - In **Maven** add a new installer and name it **M3**.
-- Execute `oc create -f resources/pipeline-sample.yml`.
 
 assuming nexus is provisioned https://github.com/samueltauil/nexus
-assuming jenkins ephemeral is provisioned
+assuming jenkins is provisioned or configured to auto-provision
 
 create 3 project by web ui, dev, qa and ci-cd
- 
+
+1 - create the project called simpledemo using jboss-eap template
+2 - add the build and deploy env vars of maven:
+MAVEN_MIRROR_URL http://nexus.ci-cd.svc.cluster.local:8081/repository/maven-public/
+3 - change the image stream url to the registry on dc of dev
+4 - execute setroles passing the registry ip:port
+5 - change dc of qa to always pull the image:
+    imagePullPolicy: Always
+6 - create the pipeline on ci-cd project
+7 - execute the pipeline 
